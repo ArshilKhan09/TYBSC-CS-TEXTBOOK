@@ -12,7 +12,8 @@ const books = [
 document.querySelectorAll(".download-icon").forEach(el => {
   el.addEventListener("click", (e) => {
     e.stopPropagation();
-    const index = e.target.dataset.index;
+    const icon = e.currentTarget; 
+    const index = icon.dataset.index;
     const fileName = books[index];
     const filePath = `books/${fileName}`;
     const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
