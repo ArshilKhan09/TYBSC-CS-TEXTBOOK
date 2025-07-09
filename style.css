@@ -1,41 +1,164 @@
+:root {
+  --bg-color: #f0f4f8;
+  --card-color: #ffffff;
+  --text-color: #333;
+  --highlight: #007acc;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+  --bg-color: #121212;
+  --card-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --highlight: #00b4d8;
+  --shadow: rgba(255, 255, 255, 0.08);
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f0f4f8;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
-  padding: 0;
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Header with vibrant gradient */
 header {
-  background-color: #004d99;
+  background: linear-gradient(135deg, #004d99, #007acc);
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
+header h1 {
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.controls input {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 6px var(--shadow);
+  width: 220px;
+}
+
+.controls button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  background-color: var(--highlight);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.controls button:hover {
+  background-color: #005bb5;
+}
+
+/* Main layout */
 main {
-  max-width: 600px;
+  max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
+  flex: 1;
 }
 
+/* Book cards with hover effect */
 .book {
-  background-color: white;
+  background-color: var(--card-color);
   margin: 1rem 0;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.3rem 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px var(--shadow);
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .book:hover {
   background-color: #e6f2ff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
+.book::before {
+  content: "📘";
+  font-size: 1.6rem;
+  transition: transform 0.3s;
+}
+
+.book:hover::before {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Footer with social links */
 footer {
   text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  background: #ddd;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(to right, #dddddd, #cccccc);
+  color: #444;
+  font-size: 0.95rem;
+  margin-top: auto;
+}
+
+.social-links {
+  margin-top: 0.5rem;
+}
+
+.social-links a {
+  color: #333;
+  margin: 0 12px;
+  font-size: 1.4rem;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--highlight);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .controls input,
+  .controls button {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
 }

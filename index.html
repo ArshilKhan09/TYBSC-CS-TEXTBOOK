@@ -5,39 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TYBSc CS - Textbook Downloads</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <header>
     <h1>TYBSc Computer Science</h1>
     <p>Download Semester V Textbooks</p>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search textbooks..." />
+      <button id="themeToggle">🌙 Dark Mode</button>
+    </div>
   </header>
 
-  <main>
-    <div class="book" onclick="downloadFile('OOPS-USING-JAVA.pdf')">
-      📘 OBJECT ORIENTED PROGRAMMING USING JAVA – I TEXTBOOK
-    </div>
-    <div class="book" onclick="downloadFile('THEORETICAL-COMPUTER-SCIENCE-TEXTBOOK.pdf')">
-      📘 THEORETICAL COMPUTER SCIENCE TEXTBOOK
-    </div>
-    <div class="book" onclick="downloadFile('COMPUTER-NETWORK-2.pdf')">
-      📘 COMPUTER NETWORKS – II TEXTBOOK
-    </div>
-    <div class="book" onclick="downloadFile('BLOCKCHAIN-TECHNOLOGY.pdf')">
-      📘 BLOCKCHAIN TECHNOLOGY  TEXTBOOK
-    </div>
-    <div class="book" onclick="downloadFile('FOUNDATION-OF-DATA-SCIENCE.pdf')">
-      📘 FOUNDATION OF DATA SCIENCE  TEXTBOOK
-    </div>
-    <div class="book" onclick="downloadFile('OPERATING-SYSTEM-1.pdf')">
-      📘 OPERATING SYSTEM – I TEXTBOOK
-    </div>
-    <div class="book" onclick="downloadFile('PYTHON-PROGRAMMING (1).pdf')">
-      📘 PYTHON PROGRAMMING TEXTBOOK 
-    </div>
-    <div class="book" onclick="downloadFile('WEB-TECHNOLOGY-1.pdf')">
-      📘 WEB-TECHNOLOGY – I  TEXTBOOK
-    </div>
+  <main id="bookList">
+    <div class="book">OBJECT ORIENTED PROGRAMMING USING JAVA – I TEXTBOOK</div>
+    <div class="book">THEORETICAL COMPUTER SCIENCE TEXTBOOK</div>
+    <div class="book">COMPUTER NETWORKS – II TEXTBOOK</div>
+    <div class="book">BLOCKCHAIN TECHNOLOGY TEXTBOOK</div>
+    <div class="book">FOUNDATION OF DATA SCIENCE TEXTBOOK</div>
+    <div class="book">OPERATING SYSTEM – I TEXTBOOK</div>
+    <div class="book">PYTHON PROGRAMMING TEXTBOOK</div>
+    <div class="book">WEB TECHNOLOGY – I TEXTBOOK</div>
   </main>
+
+  <footer>
+    <p>&copy; 2025 TYBSc CS | 
+    <div class="social-links">
+      <a href="https://github.com/yourgithub" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/yourlinkedin" target="_blank" title="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+    </p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
