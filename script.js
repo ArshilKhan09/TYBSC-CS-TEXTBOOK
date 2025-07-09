@@ -9,19 +9,23 @@ const books = [
   "WEB-TECHNOLOGY-1.pdf"
 ];
 
-// Download only when clicking the icon
+// Download only when clicking the icon, with confirmation
 document.querySelectorAll(".download-icon").forEach(el => {
   el.addEventListener("click", (e) => {
     e.stopPropagation();
     const index = e.target.dataset.index;
     if (index !== undefined) {
-      const filePath = `books/${books[index]}`;
-      const link = document.createElement('a');
-      link.href = filePath;
-      link.download = books[index];
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const fileName = books[index];
+      const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
+      if (confirmDownload) {
+        const filePath = `books/${fileName}`;
+        const link = document.createElement('a');
+        link.href = filePath;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     }
   });
 });
@@ -34,11 +38,4 @@ document.getElementById("searchInput").addEventListener("input", function () {
     const text = book.textContent.toLowerCase();
     book.style.display = text.includes(filter) ? "flex" : "none";
   });
-});
-
-// Dark mode toggle
-document.getElementById("themeToggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  const btn = document.getElementById("themeToggle");
-  btn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
 });
