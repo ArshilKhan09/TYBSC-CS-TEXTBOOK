@@ -22,7 +22,6 @@ document.querySelectorAll(".download-icon").forEach(el => {
       if (confirmDownload) {
         showToast(`Downloading "${fileName}"...`);
 
-        // Optional: Open button below the book
         const statusSpan = e.target.parentElement.querySelector('.status-message');
         if (statusSpan) {
           statusSpan.innerHTML = `Downloading... `;
@@ -50,7 +49,6 @@ function showToast(message) {
   const toast = document.getElementById("toast");
   toast.textContent = message;
   toast.className = "show";
-
   setTimeout(() => {
     toast.className = toast.className.replace("show", "");
   }, 3000);
