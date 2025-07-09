@@ -9,31 +9,22 @@ const books = [
   "WEB-TECHNOLOGY-1.pdf"
 ];
 
-// Download with confirm, toast, and success notification
 document.querySelectorAll(".download-icon").forEach(el => {
   el.addEventListener("click", (e) => {
     e.stopPropagation();
     const index = e.target.dataset.index;
-    if (index !== undefined) {
-      const fileName = books[index];
-      const filePath = `books/${fileName}`;
-      const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
+    const fileName = books[index];
+    const filePath = `books/${fileName}`;
+    const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
 
-      if (confirmDownload) {
-        showToast(`⬇️ Downloading "${fileName}"...`);
+    if (confirmDownload) {
+      showToast(`⬇️ Downloading "${fileName}"...`);
 
-        const statusSpan = e.target.parentElement.querySelector('.status-message');
-        if (statusSpan) {
-          statusSpan.innerHTML = `Downloading... `;
+      const parent = e.target.parentElement;
+      const statusSpan = parent.querySelector('.status-message');
+      statusSpan.innerHTML = `Downloading...`;
 
-          const openBtn = document.createElement('button');
-          openBtn.textContent = "Open";
-          openBtn.className = "open-button";
-          openBtn.onclick = () => window.open(filePath, "_blank");
-          statusSpan.appendChild(openBtn);
-        }
-
-        // Trigger download
+      setTimeout(() => {
         const link = document.createElement('a');
         link.href = filePath;
         link.download = fileName;
@@ -41,11 +32,15 @@ document.querySelectorAll(".download-icon").forEach(el => {
         link.click();
         document.body.removeChild(link);
 
-        // Show success toast after delay (simulate completion)
-        setTimeout(() => {
-          showToast(`✅ "${fileName}" downloaded successfully`);
-        }, 1500);
-      }
+        showToast(`✅ "${fileName}" downloaded successfully`);
+        statusSpan.innerHTML = `✅ Downloaded`;
+
+        const openBtn = document.createElement('button');
+        openBtn.textContent = "Open";
+        openBtn.className = "open-button";
+        openBtn.onclick = () => window.open(filePath, "_blank");
+        statusSpan.appendChild(openBtn);
+      }, 1500);
     }
   });
 });
