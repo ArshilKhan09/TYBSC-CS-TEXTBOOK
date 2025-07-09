@@ -12,9 +12,7 @@ const books = [
 document.querySelectorAll(".download-icon").forEach(el => {
   el.addEventListener("click", (e) => {
     e.stopPropagation();
-
-    const icon = e.currentTarget; // safer
-    const index = icon.dataset.index;
+    const index = e.target.dataset.index;
     const fileName = books[index];
     const filePath = `books/${fileName}`;
     const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
@@ -22,7 +20,7 @@ document.querySelectorAll(".download-icon").forEach(el => {
     if (confirmDownload) {
       showToast(`⬇️ Downloading "${fileName}"...`);
 
-      const parent = icon.parentElement;
+      const parent = e.target.parentElement;
       const statusSpan = parent.querySelector('.status-message');
       statusSpan.innerHTML = `Downloading...`;
 
@@ -36,7 +34,29 @@ document.querySelectorAll(".download-icon").forEach(el => {
 
         showToast(`✅ "${fileName}" downloaded successfully`);
         statusSpan.innerHTML = `✅ Downloaded`;
+
+        
       }, 1500);
     }
+  });
+});
+
+// Toast message function
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.className = "show";
+  setTimeout(() => {
+    toast.className = toast.className.replace("show", "");
+  }, 3000);
+}
+
+// Search filter
+document.getElementById("searchInput").addEventListener("input", function () {
+  const filter = this.value.toLowerCase();
+  const books = document.querySelectorAll(".book");
+  books.forEach(book => {
+    const text = book.textContent.toLowerCase();
+    book.style.display = text.includes(filter) ? "flex" : "none";
   });
 });
