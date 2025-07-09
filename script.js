@@ -9,16 +9,20 @@ const books = [
   "WEB-TECHNOLOGY-1.pdf"
 ];
 
-// Assign download event
-document.querySelectorAll('.book').forEach((el, index) => {
-  el.addEventListener('click', () => {
-    const filePath = `books/${books[index]}`;
-    const link = document.createElement('a');
-    link.href = filePath;
-    link.download = books[index];
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+// Download only when clicking the icon
+document.querySelectorAll(".download-icon").forEach(el => {
+  el.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const index = e.target.dataset.index;
+    if (index !== undefined) {
+      const filePath = `books/${books[index]}`;
+      const link = document.createElement('a');
+      link.href = filePath;
+      link.download = books[index];
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   });
 });
 
@@ -28,7 +32,7 @@ document.getElementById("searchInput").addEventListener("input", function () {
   const books = document.querySelectorAll(".book");
   books.forEach(book => {
     const text = book.textContent.toLowerCase();
-    book.style.display = text.includes(filter) ? "block" : "none";
+    book.style.display = text.includes(filter) ? "flex" : "none";
   });
 });
 
