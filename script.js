@@ -9,7 +9,7 @@ const books = [
   "WEB-TECHNOLOGY-1.pdf"
 ];
 
-// Download with confirm and toast
+// Download with confirm, toast, and success notification
 document.querySelectorAll(".download-icon").forEach(el => {
   el.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -20,7 +20,7 @@ document.querySelectorAll(".download-icon").forEach(el => {
       const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
 
       if (confirmDownload) {
-        showToast(`Downloading "${fileName}"...`);
+        showToast(`⬇️ Downloading "${fileName}"...`);
 
         const statusSpan = e.target.parentElement.querySelector('.status-message');
         if (statusSpan) {
@@ -33,12 +33,18 @@ document.querySelectorAll(".download-icon").forEach(el => {
           statusSpan.appendChild(openBtn);
         }
 
+        // Trigger download
         const link = document.createElement('a');
         link.href = filePath;
         link.download = fileName;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        // Show success toast after delay (simulate completion)
+        setTimeout(() => {
+          showToast(`✅ "${fileName}" downloaded successfully`);
+        }, 1500);
       }
     }
   });
