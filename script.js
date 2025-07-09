@@ -9,7 +9,7 @@ const books = [
   "WEB-TECHNOLOGY-1.pdf"
 ];
 
-// Download only when clicking the icon, with confirmation
+// Download only when clicking the icon, with confirmation, message, and open button
 document.querySelectorAll(".download-icon").forEach(el => {
   el.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -19,12 +19,32 @@ document.querySelectorAll(".download-icon").forEach(el => {
       const confirmDownload = confirm(`Do you want to download "${fileName}"?`);
       if (confirmDownload) {
         const filePath = `books/${fileName}`;
+
+        // Show status message
+        const statusSpan = e.target.parentElement.querySelector('.status-message');
+        if (statusSpan) {
+          statusSpan.innerHTML = `Downloading...`;
+
+          // Create Open button
+          const openBtn = document.createElement('button');
+          openBtn.textContent = "Open";
+          openBtn.className = "open-button";
+          openBtn.onclick = () => window.open(filePath, "_blank");
+          statusSpan.appendChild(openBtn);
+        }
+
+        // Trigger file download
         const link = document.createElement('a');
         link.href = filePath;
         link.download = fileName;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        // Optional: Clear message after 5 seconds
+        setTimeout(() => {
+          if (statusSpan) statusSpan.textContent = "";
+        }, 5000);
       }
     }
   });
