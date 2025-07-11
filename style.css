@@ -25,28 +25,55 @@ body {
   min-height: 100vh;
 }
 
-/* Futuristic Animated Gradient Background */
+/* Techy background styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg, #0d0d0d, #1a1a40, #0d0d0d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle binary overlay effect */
 body::before {
-  content: "";
-  position: fixed;
+  content: "0101010011010101010101001101010101010100110101010101";
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg,#0d0d0d, #1a1a40);
-  background-size: 600% 600%;
-  animation: gradientShift 20s ease infinite;
-  z-index: -2;
-  opacity: 0.6;
-  background-attachment: fixed;
-  filter: brightness(0.8) saturate(1.2);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  animation: moveBinary 40s linear infinite;
 }
 
-@keyframes gradientShift {
+/* Gradient animation */
+@keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+/* Binary scroll animation */
+@keyframes moveBinary {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Binary scroll animation */
+@keyframes moveBinary {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
 
 /* Header */
 header {
@@ -129,7 +156,7 @@ main {
 
 .book:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 0 18px rgba(138, 23, 233, 0.2), 0 0 40px rgba(0, 255, 255, 0.05);
+  box-shadow: 0 0 18px rgba(233, 218, 245, 0.2), 0 0 40px rgba(115, 204, 204, 0.05);
 }
 
 .book::before {
@@ -145,7 +172,7 @@ main {
 /* Download Icon */
 .download-icon {
   margin-left: auto;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: var(--highlight);
   transition: transform 0.2s, color 0.2s;
   cursor: pointer;
@@ -153,7 +180,7 @@ main {
 
 .download-icon:hover {
   transform: scale(1.2);
-  color: #a985ec;
+  color: #c7b0f1;
 }
 
 /* Footer with matching gradient */
@@ -199,23 +226,6 @@ footer {
   }
 }
 
-/* Open Button Styling */
-.open-button {
-  margin-left: 10px;
-  padding: 4px 10px;
-  font-size: 0.8rem;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--highlight);
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.open-button:hover {
-  background-color: #a985ec;
-}
-
 /* Toast Notification Styling */
 #toast {
   visibility: hidden;
@@ -241,24 +251,6 @@ footer {
   opacity: 1;
   bottom: 60px;
 }
-
-/* Open Button Styling */
-.open-button {
-  margin-left: 10px;
-  padding: 4px 10px;
-  font-size: 0.8rem;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--highlight);
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.open-button:hover {
-  background-color: #a985ec;
-}
-
 
 .file-size {
   font-size: 0.85rem;
